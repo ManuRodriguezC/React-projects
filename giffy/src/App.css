@@ -10,5 +10,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  padding: 16px;
+  color: white;
+}
+
+a {
+  text-decoration: none;
   color: white;
 }

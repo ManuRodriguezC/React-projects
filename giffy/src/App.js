@@ -1,31 +1,26 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import './App.css';
+import ListOfGifs from './components/ListOfGifs';
+import { Link, Route } from "wouter"
 
-const apiURL = 'https://api.giphy.com/v1/gifs/search?api_key=zqJvk5Qlzf6PMSBwpWUyEJESvXhJd0cp&q=panda&limit=15&offset=0&rating=g&lang=en'
 
-function App() {
-  const [gifs, setGifs] = useState([])
-
-  useEffect(function () {
-    //setGifs(DIFGIFS)
-    fetch(apiURL)
-      .then(res => res.json())
-      .then(response => {
-        const {data} = response
-        const gifs = data.map(image => image.images.downsized_medium.url)
-        setGifs(gifs)
-      })
-  }, [])
+export default function App() {
 
   return (
     <div className="App">
       <section className="App-content">
-        {
-          gifs.map(singleGif => <img src={singleGif}/>)
-        }
+        <h1>App</h1>
+        <a href='/gif/perritos/5'>Gifs de perritos</a>
+        <a href='/gif/gatos/5'>Gifs de gaticos</a>
+        <a href='/gif/carros/5'>Gifs de carros</a>
+        <Route
+          component={ListOfGifs}
+          path="/gif/:keyword/:numImg"
+        />
       </section>
     </div>
   );
 }
 
-export default App;
+//<ListOfGifs keyword='pandas' numImg="5"/>
+
